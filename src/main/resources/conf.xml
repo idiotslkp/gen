@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 我相信我不说,你们也能看懂a,c,o表示什么 -->
+<Config xmlns:a="attribute" xmlns:c="collection" xmlns:o="object">
+    <o:conf>
+
+        <!-- 额外的自定义参数 -->
+        <c:paramMap>
+            <!-- 作者名称 -->
+            <a:author>LKP</a:author>
+            <!-- 生成的代码包名 -->
+            <!-- 服务提供者 -->
+            <a:packageName>com.yingzi.center.growing.standard</a:packageName>
+            <!-- 服务消费者 -->
+            <a:appPackageName>com.yingzi.app.growing</a:appPackageName>
+            <!-- 用于给app分包使用 -->
+            <a:modualName>standard</a:modualName>
+            <!-- 想要生成的文件的路径 -->
+            <a:targetPath>/Users/liukaipeng/Desktop/temp/</a:targetPath>
+            <!-- 模板包名,不同的项目,使用的模板可能不一样,那么可以区分开来. -->
+            <a:tplsPackageUrl>genTemplate</a:tplsPackageUrl>
+        </c:paramMap>
+
+        <!-- 数据来源 -->
+        <c:dataSources>
+            <!-- pdm -->
+            <o:dataSource>
+                <!-- pmd的路径 -->
+                <a:pdmUrl>E:\工作\ES产品\pdm\demo.pdm</a:pdmUrl>
+                <!-- model名称,另外,使用pdm的情况下(默认使用LKP定制的pdm模板去写pdm),如果指定了modelName,那么就会生成指定的model,否则生成pdm里面所有的model -->
+                <a:modelName>SampleRelationRecord</a:modelName>
+            </o:dataSource>
+            <!-- 数据库 -->
+            <o:dataSource>
+                <a:driver>com.mysql.jdbc.Driver</a:driver>
+                <a:url>jdbc:mysql://localhost:3306/world?useUnicode=true&amp;characterEncoding=utf-8</a:url>
+                <a:username>root</a:username>
+                <a:password>root</a:password>
+                <!-- 写上表名 -->
+                <a:tableName>city</a:tableName>
+                <!-- 生成的model名称 -->
+                <a:modelName>SampleRelationRecord</a:modelName>
+                <!-- 数据库表注释,数据库的情况下需要写上(因为不知道如何去获取数据库的注释.) -->
+                <a:comment>产品关联</a:comment>
+            </o:dataSource>
+            <!-- java文件 -->
+            <o:dataSource>
+            </o:dataSource>
+        </c:dataSources>
+
+        <!-- 模板配置 -->
+        <!--fileSuffix文件路径前缀,用于分包-->
+        <c:tpls>
+            <o:tpl>
+                <a:name>modelEo.ftl</a:name>
+                <a:suffix>${packageName}.eo</a:suffix>
+                <a:fileName>{0}Eo.java</a:fileName>
+                <a:fileSuffix>center/api/</a:fileSuffix>
+            </o:tpl>
+            <o:tpl>
+                <a:name>modelDto.ftl</a:name>
+                <a:suffix>${packageName}.dto</a:suffix>
+                <a:fileName>{0}Dto.java</a:fileName>
+                <a:fileSuffix>center/api/</a:fileSuffix>
+            </o:tpl>
+            <o:tpl>
+                <a:name>api.ftl</a:name>
+                <a:suffix>${packageName}.api</a:suffix>
+                <a:fileName>I{0}Api.java</a:fileName>
+                <a:fileSuffix>center/api/</a:fileSuffix>
+            </o:tpl>
+            <o:tpl>
+                <a:name>apiImpl.ftl</a:name>
+                <a:suffix>${packageName}.apiimpl</a:suffix>
+                <a:fileName>{0}ApiImpl.java</a:fileName>
+                <a:fileSuffix>center/service/</a:fileSuffix>
+            </o:tpl>
+            <o:tpl>
+                <a:name>service.ftl</a:name>
+                <a:suffix>${packageName}.service</a:suffix>
+                <a:fileName>I{0}Service.java</a:fileName>
+                <a:fileSuffix>center/service/</a:fileSuffix>
+            </o:tpl>
+            <o:tpl>
+                <a:name>serviceImpl.ftl</a:name>
+                <a:suffix>${packageName}.service.impl</a:suffix>
+                <a:fileName>{0}ServiceImpl.java</a:fileName>
+                <a:fileSuffix>center/service/</a:fileSuffix>
+            </o:tpl>
+            <o:tpl>
+                <a:name>mapper.ftl</a:name>
+                <a:suffix>${packageName}.mapper</a:suffix>
+                <a:fileName>{0}Mapper.java</a:fileName>
+                <a:fileSuffix>center/service/</a:fileSuffix>
+            </o:tpl>
+            <o:tpl>
+                <a:name>sql.ftl</a:name>
+                <a:suffix>${packageName}.eo</a:suffix>
+                <a:fileName>{0}.sql</a:fileName>
+                <a:fileSuffix>center/api/</a:fileSuffix>
+            </o:tpl>
+            <o:tpl>
+                <a:name>center-api.ftl</a:name>
+                <a:suffix>${packageName}.eo</a:suffix>
+                <a:fileName>{0}.xml</a:fileName>
+                <a:fileSuffix>center/api/</a:fileSuffix>
+            </o:tpl>
+            <o:tpl>
+                <a:name>app-api.ftl</a:name>
+                <a:suffix>${appPackageName}.${modualName}.ctrl</a:suffix>
+                <a:fileName>{0}.xml</a:fileName>
+                <a:fileSuffix>app/service/</a:fileSuffix>
+            </o:tpl>
+            <o:tpl>
+                <a:name>controller.ftl</a:name>
+                <a:suffix>${appPackageName}.${modualName}.ctrl</a:suffix>
+                <a:fileName>{0}Controller.java</a:fileName>
+                <a:fileSuffix>app/service/</a:fileSuffix>
+            </o:tpl>
+            <o:tpl>
+                <a:name>app_service.ftl</a:name>
+                <a:suffix>${appPackageName}.${modualName}.service</a:suffix>
+                <a:fileName>I{0}Service.java</a:fileName>
+                <a:fileSuffix>app/service/</a:fileSuffix>
+            </o:tpl>
+            <o:tpl>
+                <a:name>app_serviceImpl.ftl</a:name>
+                <a:suffix>${appPackageName}.${modualName}.service.impl</a:suffix>
+                <a:fileName>{0}ServiceImpl.java</a:fileName>
+                <a:fileSuffix>app/service/</a:fileSuffix>
+            </o:tpl>
+        </c:tpls>
+
+        <!--
+            mybatis配置文件相关,一般来说一下的配置并不需要改动他,参数的说明请查看:
+            com.massestech.common.gen.model.FieldType类	,
+            另外该配置是给mybatis使用的,如果使用的不是mybatis,那么请忽略该配置.
+         -->
+        <c:FieldTypes>
+            <!--
+            目前支持的有:
+            VARCHAR2,VARCHAR,BLOB,CLOB,NUMBER,INT,TIMESTAMP
+            如果有需要那么自己复制一个节点继续添加即可
+             -->
+            <o:FieldType>
+                <a:sqlFieldType>VARCHAR</a:sqlFieldType>
+                <a:length>255</a:length>
+                <a:defaultValue></a:defaultValue>
+                <a:modelFieldType>String</a:modelFieldType>
+                <a:mybatisFieldType>VARCHAR</a:mybatisFieldType>
+                <a:importClass></a:importClass>
+            </o:FieldType>
+            <o:FieldType>
+                <a:sqlFieldType>int</a:sqlFieldType>
+                <a:length>11</a:length>
+                <a:defaultValue>0</a:defaultValue>
+                <a:modelFieldType>Integer</a:modelFieldType>
+                <a:mybatisFieldType>NUMERIC</a:mybatisFieldType>
+                <a:importClass></a:importClass>
+            </o:FieldType>
+            <o:FieldType>
+                <a:sqlFieldType>int</a:sqlFieldType>
+                <a:length>11</a:length>
+                <a:defaultValue>0</a:defaultValue>
+                <a:modelFieldType>int</a:modelFieldType>
+                <a:mybatisFieldType>NUMERIC</a:mybatisFieldType>
+                <a:importClass></a:importClass>
+            </o:FieldType>
+            <o:FieldType>
+                <a:sqlFieldType>bigint</a:sqlFieldType>
+                <a:length>20</a:length>
+                <a:defaultValue>0</a:defaultValue>
+                <a:modelFieldType>Long</a:modelFieldType>
+                <a:mybatisFieldType>NUMERIC</a:mybatisFieldType>
+                <a:importClass></a:importClass>
+            </o:FieldType>
+            <o:FieldType>
+                <a:sqlFieldType>datetime</a:sqlFieldType>
+                <a:length>0</a:length>
+                <a:defaultValue></a:defaultValue>
+                <a:modelFieldType>Date</a:modelFieldType>
+                <a:mybatisFieldType>DATE</a:mybatisFieldType>
+                <a:importClass>import java.util.Date;</a:importClass>
+            </o:FieldType>
+            <o:FieldType>
+                <a:sqlFieldType>decimal</a:sqlFieldType>
+                <a:length>19,2</a:length><!-- 保留2位小数 -->
+                <a:defaultValue>0</a:defaultValue>
+                <a:modelFieldType>Float</a:modelFieldType>
+                <a:mybatisFieldType>NUMERIC</a:mybatisFieldType>
+                <a:importClass></a:importClass>
+            </o:FieldType>
+            <o:FieldType>
+                <a:sqlFieldType>DOUBLE</a:sqlFieldType>
+                <a:length>0</a:length>
+                <a:defaultValue>0</a:defaultValue>
+                <a:modelFieldType>Double</a:modelFieldType>
+                <a:mybatisFieldType>NUMERIC</a:mybatisFieldType>
+                <a:importClass></a:importClass>
+            </o:FieldType>
+            <o:FieldType>
+                <a:sqlFieldType>bigint</a:sqlFieldType>
+                <a:length>20</a:length>
+                <a:defaultValue>0</a:defaultValue>
+                <a:modelFieldType>long</a:modelFieldType>
+                <a:mybatisFieldType>NUMERIC</a:mybatisFieldType>
+                <a:importClass></a:importClass>
+            </o:FieldType>
+            <!--
+            <o:FieldType>
+                <a:sqlFieldType></a:sqlFieldType>
+                <a:modelFieldType></a:modelFieldType>
+                <a:mybatisFieldType></a:mybatisFieldType>
+                <a:importClass></a:importClass>
+            </o:FieldType>
+             -->
+        </c:FieldTypes>
+    </o:conf>
+</Config>
